@@ -17,11 +17,12 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://service-board-6cub9s88h-sashika-dilminas-projects.vercel.app'
+    'https://service-board-beta.vercel.app'
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true,
 }));
+
 app.use(express.json());
 
 // Routes
