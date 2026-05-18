@@ -5,16 +5,23 @@ const connectDB = require('./config/db');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const jobRoutes = require('./routes/jobRoutes');
 
-// Load environment variables
+// Load env variables
 dotenv.config();
 
-// Connect to Database
+// Connect Database
 connectDB();
 
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // local frontend
+    'https://your-frontend.vercel.app' // deployed frontend
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Routes
@@ -25,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-// Error Handling Middleware
+// Error Middleware
 app.use(notFound);
 app.use(errorHandler);
 
