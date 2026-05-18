@@ -16,10 +16,11 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: [
-    'http://localhost:5173', // local frontend
-    'https://your-frontend.vercel.app' // deployed frontend
+    'http://localhost:3000',
+    'https://your-vercel-app.vercel.app'
   ],
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true,
 }));
 
 app.use(express.json());
