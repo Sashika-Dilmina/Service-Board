@@ -7,22 +7,38 @@ const api = axios.create({
   },
 });
 
-// Interceptor for handling errors globally
-api.interceptors.response.use(
-  (response) => response.data,
-  (error) => {
-    const message = error.response?.data?.message || 'Something went wrong';
-    console.error('API Error:', message);
-    return Promise.reject(message);
-  }
-);
+export const jobService = {
+  getAll: async () => {
+    const response = await api.get('');
+
+    return response.data.data;
+  },
+
+  getById: async (id) => {
+    const response = await api.get(`/${id}`);
+
+    return response.data.data;
+  },
+
+  create: async (data) => {
+    const response = await api.post('/', data);
+
+    return response.data.data;
+  },
+
+  updateStatus: async (id, status) => {
+    const response = await api.patch(`/${id}`, {
+      status,
+    });
+
+    return response.data.data;
+  },
+
+  delete: async (id) => {
+    const response = await api.delete(`/${id}`);
+
+    return response.data.data;
+  },
+};
 
 export default api;
-
-export const jobService = {
-  getAll: (params) => api.get('/jobs', { params }),
-  getById: (id) => api.get(`/jobs/${id}`),
-  create: (data) => api.post('/jobs', data),
-  updateStatus: (id, status) => api.patch(`/jobs/${id}`, { status }),
-  delete: (id) => api.delete(`/jobs/${id}`),
-};

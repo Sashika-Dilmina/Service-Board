@@ -42,3 +42,10 @@ next-env.d.ts
 
 node_modules
 .env
+frontend/.next/
+frontend/.env.local
+
+# next.js
+/.next/
+/out
+frontend/.next/
