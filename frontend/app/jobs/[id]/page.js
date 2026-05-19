@@ -32,7 +32,7 @@ export default function JobDetail() {
     try {
       setLoading(true);
       const data = await jobService.getById(id);
-      setJob(data.data);
+      setJob(data);
     } catch (err) {
       setError(err);
     } finally {
